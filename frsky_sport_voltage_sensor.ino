@@ -11,6 +11,7 @@
 #include "SoftwareSerial.h"
 
 #define LPF_FACTOR 0.75
+#define LOOP_TIME 1000
 
 FrSkySportSensorFlvss flvss;
 FrSkySportTelemetry telemetry;
@@ -123,4 +124,6 @@ void loop()
   cell6Voltage = (float)smoothCell6Voltage * cell6DividerMultiplier;
   flvss.setData(cell1Voltage, cell2Voltage - cell1Voltage, cell3Voltage - cell2Voltage, cell4Voltage - cell3Voltage, cell5Voltage - cell4Voltage, cell6Voltage - cell5Voltage);
   telemetry.send();
+
+  delay(LOOP_TIME);
 }
